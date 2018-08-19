@@ -6,7 +6,7 @@ let allCards = document.querySelectorAll('.card');
  let storageCards = [];
  let moves = 0;
  let time = 0;
- let startClock = true;
+ let startClock = false;
  let stars = document.querySelectorAll('.stars li')
 
 // Shuffle Cards..................
