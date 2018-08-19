@@ -1,11 +1,12 @@
 /*
  * Create a list that holds all of your cards
+ * All Global Scope
  */
 let allCards = document.querySelectorAll('.card');
-// Flip the cards & If cards match function............
  let storageCards = [];
  let moves = 0;
  let time = 0;
+ let startClock = true;
  let stars = document.querySelectorAll('.stars li')
 
 // Shuffle Cards..................
@@ -19,14 +20,24 @@ function shuffleCards() {
 } 
     shuffleCards();
 
+// Flip the cards & If cards match function............
+
+// click the cards to start the game!......................
+
  allCards.forEach(function(cardTarget){
     cardTarget.addEventListener('click', event => { 
         const clickCards = event.target;
+        
+        if(!startClock){
+           setTimer (); 
+        }
+
        if (clickCards.classList.contains('card') && storageCards.length < 2){
            storageCards.push(cardTarget);
            clickCards.classList.add('open','show');
            
         // Matching cards........
+
         function matchCards(){
         if (storageCards[0].firstElementChild.className === storageCards[1].firstElementChild.className){
             storageCards[0].classList.add('match');
@@ -35,6 +46,7 @@ function shuffleCards() {
         }
     }
         // Remove if cards doesn't match......
+
             if (storageCards.length === 2){
                 matchCards();
                 setTimeout(function(){
@@ -46,7 +58,6 @@ function shuffleCards() {
                 
             }  
         }
-        setTimer ();
     });
  })
 
