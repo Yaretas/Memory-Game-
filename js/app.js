@@ -1,10 +1,12 @@
 /*
  * Create a list that holds all of your cards
  */
- let allCards = document.querySelectorAll('.card');
+let allCards = document.querySelectorAll('.card');
 // Flip the cards & If cards match function............
  let storageCards = [];
- let pairedCards = [];
+ let moves = 0;
+ let time = 0;
+ let stars = document.querySelectorAll('.stars li')
 
 // Shuffle Cards..................
 function shuffleCards() {
@@ -19,7 +21,6 @@ function shuffleCards() {
 
  allCards.forEach(function(cardTarget){
     cardTarget.addEventListener('click', event => { 
-
         const clickCards = event.target;
        if (clickCards.classList.contains('card') && storageCards.length < 2){
            storageCards.push(cardTarget);
@@ -45,12 +46,28 @@ function shuffleCards() {
                 
             }  
         }
+        setTimer ();
     });
  })
 
- 
-
 // Set Timer.......
+function setTimer () { 
+    const minutes = document.getElementById('minutes');
+    const seconds = document.getElementById('seconds');
+    setInterval( function(){
+        ++time;
+        seconds.innerHTML = count(time % 60);
+        minutes.innerHTML = count(parseInt(time / 60));   
+    },1000);   
+}
+function count(val) {
+    const string = val + "";
+    if (string.length < 2) {
+        return "0" + string;
+    } else {
+        return string;
+    }
+}
 
 // Set Score.......
 
