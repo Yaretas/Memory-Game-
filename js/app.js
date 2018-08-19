@@ -27,9 +27,11 @@ function shuffleCards() {
  allCards.forEach(function(cardTarget){
     cardTarget.addEventListener('click', event => { 
         const clickCards = event.target;
-        if(startClock){
-           setTimer (); 
-           startClock = False;
+        if(cardTarget){
+            if(!startClock){
+                setTimer();
+                startClock = true;
+            }
         }
 
        if (clickCards.classList.contains('card') && storageCards.length < 2){
