@@ -1,13 +1,14 @@
 /*
  * Create a list that holds all of your cards
- * All Global Scope
  */
 let allCards = document.querySelectorAll('.card');
+// Flip the cards & If cards match function............
  let storageCards = [];
  let moves = 0;
  let time = 0;
  let startClock = false;
- let stars = document.querySelectorAll('.stars li')
+ let stars = document.querySelectorAll('.stars li');
+ let restart = document.getElementsByClassName('.restart');
 
 // Shuffle Cards..................
 function shuffleCards() {
@@ -20,10 +21,6 @@ function shuffleCards() {
 } 
     shuffleCards();
 
-// Flip the cards & If cards match function............
-
-// click the cards to start the game!......................
-
  allCards.forEach(function(cardTarget){
     cardTarget.addEventListener('click', event => { 
         const clickCards = event.target;
@@ -33,13 +30,11 @@ function shuffleCards() {
                 startClock = true;
             }
         }
-
        if (clickCards.classList.contains('card') && storageCards.length < 2){
            storageCards.push(cardTarget);
            clickCards.classList.add('open','show');
            
         // Matching cards........
-
         function matchCards(){
         if (storageCards[0].firstElementChild.className === storageCards[1].firstElementChild.className){
             storageCards[0].classList.add('match');
@@ -48,9 +43,10 @@ function shuffleCards() {
         }
     }
         // Remove if cards doesn't match......
-
             if (storageCards.length === 2){
                 matchCards();
+                countMoves();
+                checkPoints();
                 setTimeout(function(){
                     storageCards.forEach(function(cardTarget){  
                         cardTarget.classList.remove('open','show');
@@ -82,8 +78,43 @@ function count(val) {
     }
 }
 
-// Set Score.......
+// Set Score & moves.......
+function countMoves (){
+    moves++;
+    const plural = document.querySelector('.moves');
+    plural.innerHTML = moves;
+}
 
+function checkPoints(){
+    if(moves === 9 || moves === 12 || moves === 15 || moves === 18){
+        toggleStars();
+        if(moves === 19){
+            window.alert("Please Try Again!! GEEZ! :)");
+        }
+    }
+
+}
+
+function toggleStars(){
+    const starList = document.querySelectorAll('.stars li');
+    for(star of starList){
+       if(star.style.display !== 'none'){
+        star.style.display = 'none';
+        break;
+       }
+    }
+}
+
+function resetGame(){
+
+}
+
+function showModal(){
+    const modal = document.querySelector('.modal_background');
+    modal.classList.toggle('hide');
+}
+showModal();
+showModal();
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {

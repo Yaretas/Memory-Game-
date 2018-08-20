@@ -107,3 +107,65 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+/* 
+* building Modal 
+*/
+
+.modal_background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.438);
+}
+
+.modal_body {
+    position: relative;
+    width: 400px;
+    /* height: 400px; */
+    top: 50%;
+    left: 50%;
+    text-decoration: white;
+    background: #AAADC4;
+    transform: translate(-50%, -70%);
+    border: 2px #2e3d49;
+}
+
+.modal_heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:0 1.5rem;
+    border-bottom: 2px solid black;
+}
+
+.modal_close {
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.modal_stats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 2px solid black;
+}
+
+.modal_btns {
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+    background-color: #2e3d49;
+}
+
+.modal_btn {
+    width: 60px;
+    height: 30px;
+}
+
+.hide {
+    display: none;
+}

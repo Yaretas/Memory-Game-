@@ -24,8 +24,8 @@
                 <li><i class="fa fa-star"></i></li>
         	</ul>
 
-        	<span class="moves">3</span> Moves
-            <span class="timer">Time </span><span id="minutes">00</span><span>:</span><span id="seconds">00</span>>
+        	<span class="moves"></span> Moves -
+            <span class="timer">Time </span><span id="minutes">00</span><span>:</span><span id="seconds">00</span>
             <div class="restart">
                 <i class="fa fa-repeat"></i>
                 <span>Restart</span>
@@ -83,7 +83,23 @@
             </li>
         </ul>
     </div>
-
+    <div class="modal_background hide">
+        <div class="modal_body">
+            <div class="modal_heading">
+                <h1 class="modal_modal_tittle">Stats</h1>
+                <span class="modal_close">X</span>
+            </div>
+            <div class="modal_stats">
+                <span class="mTime">Time =</span>
+                <span class="mStars">Stars =</span>
+                <span class="mMoves">Moves =</span>
+            </div>
+            <div class="modal_btns">
+                <button class="modal_btn modal_cancel">Cancel</button>
+                <button class="modal_btn modal_replay">Replay</button>
+            </div>
+        </div>  
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/app.js"></script>
 </body>
