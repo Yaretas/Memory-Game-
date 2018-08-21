@@ -77,6 +77,9 @@ function count(val) {
         return string;
     }
 }
+function stopTimer(){
+    clearInterval(setTimer);
+}
 
 // Set Score & moves.......
 function countMoves (){
@@ -104,10 +107,37 @@ function toggleStars(){
        }
     }
 }
+// resetGame Function............
 
-function resetGame(){
-
+function resetGameTimer(){
+    stopTimer();
+    startClock = true;
+    time = 0;
+    setTimer();
+   
 }
+
+function resetMoves(){
+    moves = 0;
+    document.querySelector('.moves').innerHTML = moves;
+};
+
+function resetStars(){
+    stars = 0;
+    const starList = document.querySelectorAll('.stars li');
+    for(star of starList){
+       star.style.display = 'inline';
+    }
+}
+function resetGame(){
+    resetGameTimer();
+    resetMoves();
+    resetStars();
+    shuffleCards();
+}
+
+
+// Modal Functions..............
 
 function showModal(){
     const modal = document.querySelector('.modal_background');
@@ -115,6 +145,40 @@ function showModal(){
 }
 showModal();
 showModal();
+
+function modalStats(){
+    const finalTime = document.querySelector('.mTime');
+    const timerStat = document.querySelector('.minutes', '.seconds').innerHTML;
+    const finalMoves = document.querySelector('.mMoves');
+    const finalStars = document.querySelector('.mStars');
+    const stars = getStars();
+
+    finalTime.innerHTML = `Time = ${timerStat}`;
+    finalMoves.innerHTML = `Moves = ${moves}`;
+    finalStars.innerHTML = `Stars = ${stars}`;
+}
+
+function getStars(){
+    stars = document.querySelectorAll('.stars li');
+    startCount = 0;
+    for (star of stars) {
+        if(star.style.display !== 'none') {
+            starCount++;
+        }
+    }
+console.log(starCount); //2
+return starCount;
+}
+
+// ModalBtns....................
+document.querySelector('.modal_cancel').addEventListener('click',() => {
+    showModal();
+});
+
+document.querySelector('.modal_replay').addEventListener('click', resetGame);
+
+document.querySelector('.restart').addEventListener('click', resetGame);
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
