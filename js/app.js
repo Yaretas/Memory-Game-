@@ -7,6 +7,7 @@ let allCards = document.querySelectorAll('.card');
  let moves = 0;
  let time = 0;
  let startClock = false;
+ let matchedCards = 0;
  let stars = document.querySelectorAll('.stars li');
  let restart = document.getElementsByClassName('.restart');
 
@@ -30,17 +31,23 @@ function shuffleCards() {
                 startClock = true;
             }
         }
+        
        if (clickCards.classList.contains('card') && storageCards.length < 2){
            storageCards.push(cardTarget);
            clickCards.classList.add('open','show');
            
         // Matching cards........
         function matchCards(){
-        if (storageCards[0].firstElementChild.className === storageCards[1].firstElementChild.className){
-            storageCards[0].classList.add('match');
-            storageCards[1].classList.add('match');
-            storageCards = [];
-        }
+            const paired = 8;
+            if (storageCards[0].firstElementChild.className === storageCards[1].firstElementChild.className){
+                storageCards[0].classList.add('match');
+                storageCards[1].classList.add('match');
+                storageCards = [];
+                matchedCards++;
+                if(matchedCards === paired) {
+                    gameOver();
+                }
+            }   
     }
         // Remove if cards doesn't match......
             if (storageCards.length === 2){
@@ -91,9 +98,6 @@ function countMoves (){
 function checkPoints(){
     if(moves === 9 || moves === 12 || moves === 15 || moves === 18){
         toggleStars();
-        if(moves === 19){
-            window.alert("Please Try Again!! GEEZ! :)");
-        }
     }
 
 }
@@ -129,6 +133,12 @@ function resetStars(){
        star.style.display = 'inline';
     }
 }
+function gameOver(){
+    stopTimer();
+    modalStats();
+    showModal();
+    
+}
 function resetGame(){
     resetGameTimer();
     resetMoves();
@@ -136,6 +146,18 @@ function resetGame(){
     shuffleCards();
 }
 
+function restartGame(){
+    resetGame();
+    showModal();
+    resetCards();
+}
+
+function resetCards(){
+    const deck = document.querySelectorAll('.deck li');
+    for(let card of deck){
+        card.className = 'card';
+    }
+}
 
 // Modal Functions..............
 
@@ -148,7 +170,7 @@ showModal();
 
 function modalStats(){
     const finalTime = document.querySelector('.mTime');
-    const timerStat = document.querySelector('.minutes', '.seconds').innerHTML;
+    const timerStat = document.querySelector('.minutes','.seconds').innerHTML;
     const finalMoves = document.querySelector('.mMoves');
     const finalStars = document.querySelector('.mStars');
     const stars = getStars();
@@ -175,9 +197,10 @@ document.querySelector('.modal_cancel').addEventListener('click',() => {
     showModal();
 });
 
-document.querySelector('.modal_replay').addEventListener('click', resetGame);
+document.querySelector('.modal_replay').addEventListener('click', restartGame);
 
 document.querySelector('.restart').addEventListener('click', resetGame);
+
 
 
 // Shuffle function from http://stackoverflow.com/a/2450976
