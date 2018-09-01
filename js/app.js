@@ -170,7 +170,7 @@ showModal();
 
 function modalStats(){
     const finalTime = document.querySelector('.mTime');
-    const timerStat = document.querySelector('.minutes','.seconds').innerHTML;
+    const timerStat = document.querySelector('.minutes').innerHTML;
     const finalMoves = document.querySelector('.mMoves');
     const finalStars = document.querySelector('.mStars');
     const stars = getStars();
