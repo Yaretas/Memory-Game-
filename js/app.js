@@ -208,7 +208,7 @@ document.querySelector('.restart').addEventListener('click', resetGame);
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    array = Array.from(array);
+    array = Array.from(allCards);
     let currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
