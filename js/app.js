@@ -67,15 +67,17 @@ function shuffleCards() {
  })
 
 // Set Timer.......
-function setTimer () { 
+function setTimer(){
     const minutes = document.getElementById('minutes');
     const seconds = document.getElementById('seconds');
-    setInterval( function(){
+    time = 0;
+    setInterval(function() {
         ++time;
         seconds.innerHTML = count(time % 60);
         minutes.innerHTML = count(parseInt(time / 60));   
-    },1000);   
+    }, 1000);   
 }
+
 function count(val) {
     const string = val + "";
     if (string.length < 2) {
@@ -115,10 +117,11 @@ function toggleStars(){
 
 function resetGameTimer(){
     stopTimer();
-    startClock = true;
     time = 0;
-    setTimer();
-   
+    if(!startClock){
+        setTimer();
+        startClock = true;
+    }
 }
 
 function resetMoves(){
@@ -168,9 +171,10 @@ function showModal(){
 showModal();
 showModal();
 
+
 function modalStats(){
     const finalTime = document.querySelector('.mTime');
-    const timerStat = document.querySelector('.minutes').innerHTML;
+    const timerStat = document.querySelector('.timer').innerHTML;
     const finalMoves = document.querySelector('.mMoves');
     const finalStars = document.querySelector('.mStars');
     const stars = getStars();
@@ -182,13 +186,12 @@ function modalStats(){
 
 function getStars(){
     stars = document.querySelectorAll('.stars li');
-    startCount = 0;
+    starCount = 0;
     for (star of stars) {
         if(star.style.display !== 'none') {
             starCount++;
         }
     }
-console.log(starCount); //2
 return starCount;
 }
 
@@ -205,8 +208,8 @@ document.querySelector('.restart').addEventListener('click', resetGame);
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    array = Array.from(allCards);
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    array = Array.from(array);
+    let currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);

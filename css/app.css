@@ -18,7 +18,8 @@ body {
 
 body {
     background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
-    font-family: 'Coda', cursive;
+    font-family: 'Nanum Pen Script', cursive;
+    font-size: 20px;
 }
 
 .container {
@@ -29,7 +30,8 @@ body {
 }
 
 h1 {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Bangers', cursive;
+    font-size: 60px;
     font-weight: 300;
 }
 
@@ -95,7 +97,7 @@ h1 {
     margin: 0;
     padding: 0;
     display: inline-block;
-    margin: 0 5px 0 0;
+    margin: 0 3px 0 0;
 }
 
 .score-panel .stars li {
@@ -135,16 +137,17 @@ h1 {
 
 .modal_heading {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     padding:0 1.5rem;
     border-bottom: 2px solid black;
 }
 
-.modal_close {
-    font-weight: bold;
-    font-size: 2rem;
+.modal_heading h1{
+    font-size: 45px;
 }
+
 
 .modal_stats {
     display: flex;
@@ -168,4 +171,17 @@ h1 {
 
 .hide {
     display: none;
+}
+
+/* footer decoration */
+
+.footer_decor {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+}
+
+.footer_decor a{
+    text-decoration: none;
 }
