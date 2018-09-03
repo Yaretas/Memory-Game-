@@ -148,6 +148,7 @@ function resetGame(){
     resetMoves();
     resetStars();
     shuffleCards();
+    resetCards();
 }
 
 function restartGame(){
