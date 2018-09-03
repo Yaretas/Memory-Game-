@@ -32,7 +32,7 @@ function shuffleCards() {
             }
         }
         
-       if (clickCards.classList.contains('card') && storageCards.length < 2){
+       if (clickCards.classList.contains('card') && storageCards.length === 2){
            storageCards.push(cardTarget);
            clickCards.classList.add('open','show');
            
