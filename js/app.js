@@ -66,17 +66,18 @@ function shuffleCards() {
     });
  })
 
-// Set Timer.......
+// Set Timer.......    
+
+let t;   
+
 function setTimer(){
     const minutes = document.getElementById('minutes');
     const seconds = document.getElementById('seconds');
-    time = 0;
-    setInterval(function() {
-        ++time;
-        seconds.innerHTML = count(time % 60);
-        minutes.innerHTML = count(parseInt(time / 60));   
-    }, 1000);   
-}
+    ++time;
+    seconds.innerHTML = count(time % 60);
+    minutes.innerHTML = count(parseInt(time / 60));   
+    t = setTimeout(setTimer, 1000); 
+    }
 
 function count(val) {
     const string = val + "";
@@ -87,7 +88,7 @@ function count(val) {
     }
 }
 function stopTimer(){
-    clearInterval(setTimer);
+    clearTimeout(t);
 }
 
 // Set Score & moves.......
