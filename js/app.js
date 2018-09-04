@@ -119,7 +119,7 @@ function toggleStars(){
 function resetGameTimer(){
     stopTimer();
     time = 0;
-    if(!startClock){
+    if(startClock){
         setTimer();
         startClock = true;
     }
