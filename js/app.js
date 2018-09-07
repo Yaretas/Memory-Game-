@@ -22,6 +22,24 @@ function shuffleCards() {
 } 
     shuffleCards();
 
+// Shuffle function from http://stackoverflow.com/a/2450976
+function shuffle(array) {
+    array = Array.from(allCards);
+    let currentIndex = array.length, temporaryValue, randomIndex;
+
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+}
+
+// when card is clicked event listener starts........
+
  allCards.forEach(function(cardTarget){
     cardTarget.addEventListener('click', event => { 
         const clickCards = event.target;
@@ -32,7 +50,7 @@ function shuffleCards() {
             }
         }
         
-       if (clickCards.classList.contains('card') && storageCards.length < 2){
+       if (clickCards.classList.contains('card') && !clickCards.classList.contains('match') && !clickCards.classList.contains('open') && storageCards.length < 2){
            storageCards.push(cardTarget);
            clickCards.classList.add('open','show');
            
@@ -59,7 +77,7 @@ function shuffleCards() {
                         cardTarget.classList.remove('open','show');
                     });
                    storageCards = []; 
-                }, 2000);
+                }, 1000);
                 
             }  
         }
@@ -208,20 +226,5 @@ document.querySelector('.restart').addEventListener('click', resetGame);
 
 
 
-// Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
-    array = Array.from(allCards);
-    let currentIndex = array.length, temporaryValue, randomIndex;
-
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-}
 
 
