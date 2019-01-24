@@ -3,7 +3,7 @@
 ## Table of Contents
 
 Check out my version of the Matching Game 
-https://yaretas.github.io/Udacity_Memory_Game/
+https://yaretas.github.io/Memory-Game-/
 
 ## Instructions
 
